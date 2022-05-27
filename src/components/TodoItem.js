@@ -1,5 +1,7 @@
 import { createElement as create } from '../utils'
 
+import './TodoItems.css'
+
 export default class TodoItem {
   constructor({id, title, checked}, onDelete, onToggle) {
     this.id = id
@@ -16,11 +18,13 @@ export default class TodoItem {
   }
 
   render() {
-    return create('li', {id: this.id}, [
-      create('input', {type: 'checkbox', onclick: this.handleToggle, checked: this.state.checked}, []),
-      create('label', {}, [this.state.title]),
-      create('button', {onclick: this.handleDelete}, ['delete'])
-    ])
+    return (
+      create('li', {id: this.id}, [
+        create('input', {type: 'checkbox', onclick: this.handleToggle, checked: this.state.checked}, []),
+        create('label', {}, [this.state.title]),
+        create('button', {onclick: this.handleDelete}, ['delete'])
+      ])
+    )
   }
 
   handleDelete() {

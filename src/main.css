@@ -1,4 +1,27 @@
+* {
+  --text-color: #4875c7;
+  --text-color-light: #e2eaff;
+  --background-color-dark: #2d43b1;
+  --background-color-light: #d3dff5;
+}
+
 body {
   margin: 0;
+  color: var(--text-color);
+  font-family: Arial, Helvetica, sans-serif;
+}
 
+.wrapper {
+  width: 300px;
+  margin: auto;
+}
+@media (min-width: 768px) {
+  .wrapper {
+    width: 600px;
+  }
+}
+@media (min-width: 1024px) {
+  .wrapper {
+    width: 800px;
+  }
 }

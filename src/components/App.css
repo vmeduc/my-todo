@@ -1,0 +1,43 @@
+header {
+  height: 4rem;
+  line-height: 4rem;
+  text-align: center;
+  color: var(--text-color-light);
+  background-color: var(--background-color-dark);
+}
+
+form {
+  margin: 2rem 0;
+  padding: 0;
+}
+form * {
+  color: var(--text-color-light)
+}
+form .wrapper {
+  display: flex;
+  border: 2px solid var(--background-color-dark);
+}
+form input, form button {
+  display: block;
+  height: 2rem;
+  box-sizing: content-box;
+  border-radius: 0;
+  border: 0;
+  font-size: 12pt;
+}
+form input {
+  width: 80%;
+  color: var(--text-color);
+}
+form input:focus {
+  outline: none;
+}
+form input::placeholder {
+  color: var(--background-color-light);
+}
+form button {
+  width: 20%;
+  background-color: var(--background-color-dark);
+  font-weight: bold;
+  cursor: pointer;
+}

@@ -1,36 +1,50 @@
 import { createElement as create } from '../utils'
 import TodoItem from './TodoItem'
 
+import './App.css'
+
 export default class App {
   constructor() {
     this.state = {
       todos: [
-        {id: 1, title: 'first todo', checked: true},
-        {id: 2, title: 'second todo', checked: false},
-        {id: 3, title: 'third todo', checked: false},
+        {id: 1, title: 'Go to the store', checked: true},
+        {id: 2, title: 'Learn JavaScript', checked: false},
+        {id: 3, title: 'Learn React', checked: false},
       ], 
-      todoInput: 'initialValue'
+      todoInput: ''
     }
 
     this.todoIdCounter = 4
 
-    this.handleClick = this.handleClick.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
     this.handleInput = this.handleInput.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
     this.handleToggle = this.handleToggle.bind(this)
   }
 
   render() {
-    return create('div', {}, [
-      create('input', {type: 'text', value: this.state.todoInput, oninput: this.handleInput}, []),
-      create('button', {onclick: this.handleClick}, ['addTodo']),
-      create('ul', {}, this.state.todos.map((todo) => {
-        return new TodoItem(todo, this.handleDelete, this.handleToggle).render()
-      }))
-    ])
+    return (
+      create('div', {}, [
+        create('header', {}, [
+          create('h1', {}, ['TODO']),
+        ]),
+        create('form', {onsubmit: this.handleSubmit}, [
+          create('div', {className: 'wrapper'}, [
+            create('input', {type: 'text', value: this.state.todoInput, placeholder: 'Write todo title', oninput: this.handleInput}, []),
+            create('button', {type: 'submit'}, ['Add Todo']),
+          ])
+        ]),
+        create('ul', {}, [
+          create('div', {className: 'wrapper'}, [
+            ...this.state.todos.map(todo => new TodoItem(todo, this.handleDelete, this.handleToggle).render())
+          ]),
+        ]),
+      ])
+    )
   }
 
-  handleClick() {
+  handleSubmit(event) {
+    event.preventDefault()
     const newTodo = {id: this.todoIdCounter++, title: this.state.todoInput}
     this.state.todos.push(newTodo)
     this.mount('app')
@@ -50,7 +64,7 @@ export default class App {
     todoItem.checked = !todoItem.checked
   }
 
-  
+
   mount(id) {
     const element = document.getElementById(id)
     element.innerHTML = ''
