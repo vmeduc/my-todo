@@ -1,22 +1,23 @@
+const path = require("path");
+
 module.exports = {
-  mode: 'development',
-  entry: './src/main.js',
+  mode: "development",
+  entry: path.join(__dirname, 'src', 'main.js'),
   output: {
-    filename: 'bundle.js'
+    filename: "bundle.js",
+    path: path.resolve(__dirname),
   },
 
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
-      }
-    ]
+        use: ["style-loader", "css-loader"],
+      },
+    ],
   },
-  
+
   devServer: {
     port: 3000,
   },
-
-
-}
+};
